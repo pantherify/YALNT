@@ -47,6 +47,12 @@ class LaravelNovaResourceGenerator
                 $properties = EloquentModelParser::getTableProperties($model);
                 $relations = EloquentModelParser::getRelations($reflection_class, $class);
 
+                if (count($properties) === 0) {
+                    echo "$schemaName is Empty... Skipping it!! \n";
+                    continue;
+                }
+
+
                 $fields = array_map(function ($prop) {
                     return $prop["type"];
                 }, $properties);

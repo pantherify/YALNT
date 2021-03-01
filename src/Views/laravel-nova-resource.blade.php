@@ -31,12 +31,11 @@ class {{ $model["name"] }} extends Resource
     public static $search = [
         'id',
 
-/**
-* You can add any of this to your Laravel Nova Search
+
+// You can add any of this to your Laravel Nova Search
 @foreach($model['attributes'] as $key => $attribute)
-*    '{{$attribute['name']}}',
+//    '{{$attribute['name']}}',
 @endforeach
-*/
     ];
 
     /**

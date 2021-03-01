@@ -37,6 +37,10 @@ class EloquentModelParser
         }
 
         $columns = $schema->listTableColumns($table);
+        if (count($columns) === 0) {
+            return [];
+        }
+        
         $keyName = $model->getKeyName();
 
 
