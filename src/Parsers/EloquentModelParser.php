@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Str;
 use Pantherify\YALNT\Enums\NovaFieldEnum;
 use Pantherify\YALNT\Exceptions\ParserException;
 use ReflectionClass;
@@ -42,7 +43,16 @@ class EloquentModelParser
         foreach ($columns as $column) {
             $name = $column->getName();
             $type = EloquentModelParser::mapDbTypeToGraphType($column, $keyName);
-            if (config('yalnt.generation.skipTimeStamps') && $type === NovaFieldEnum::$ID) {
+            if (config('yalnt.generation.skipIds') && $type === NovaFieldEnum::$ID) {
+                continue;
+            }
+
+            if (config('yalnt.generation.skipTimeStamps') &&
+            (Str::contains($name, 'updated_at') || Str::contains($name, 'created_at'))) {
+                continue;
+            }
+            
+            if (Str::contains($name, '_id')) {
                 continue;
             }
 

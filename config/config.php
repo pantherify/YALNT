@@ -7,7 +7,8 @@ return
         ],
         'generation' => [
             'skipTimeStamps' => true,
-            'skipIds' => true
+            'skipIds' => true,
+            'skipUser' => true
         ],
         'nova' => [
             'path' => 'app/Nova/',

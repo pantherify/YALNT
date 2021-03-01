@@ -42,7 +42,7 @@ class ResourceGeneratorCommand extends Command
 
 
         $schema = iterator_to_array(LaravelNovaResourceGenerator::parseModels());
-
+        
         LaravelNovaResourceGenerator::generateResourceFiles($schema);
 
         return 0;

@@ -52,6 +52,11 @@ class {{ $model["name"] }} extends Resource
             @foreach($model['attributes'] as $key => $attribute)
 {{$attribute['type']}}::make(__('{{Str::upper($attribute['name'])}}'),'{{$attribute['name']}}'),
             @endforeach
+
+            @foreach($model['relations'] as $key => $relation)
+{{$relation['type']}}::make(__('{{Str::upper($relation['rel'])}}'),'{{$relation['rel']}}', {{$relation['model']}}::class ),
+            @endforeach
+
         ];
     }
 

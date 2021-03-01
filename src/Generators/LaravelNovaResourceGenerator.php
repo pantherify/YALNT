@@ -5,6 +5,7 @@ namespace Pantherify\YALNT\Generators;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 use Pantherify\YALNT\Common\ClassManipulation;
 use Pantherify\YALNT\Common\PathManipulation;
 use Pantherify\YALNT\Exceptions\GeneratorException;
@@ -31,6 +32,10 @@ class LaravelNovaResourceGenerator
             try {
                 $reflection_class = new \ReflectionClass($class);
 
+                if (config('yalnt.generation.skipUser') && Str::contains($reflection_class->getShortName(), 'User')) {
+                    continue;
+                }
+
                 if (!ClassManipulation::isAllOk($reflection_class)) {
                     continue;
                 }
@@ -46,11 +51,16 @@ class LaravelNovaResourceGenerator
                     return $prop["type"];
                 }, $properties);
 
+
+                foreach ($relations as $key => $rel) {
+                    array_push($fields, $rel["type"]);
+                }
+
                 yield array(
                     "name" => $schemaName,
                     "namespace" => $reflection_class->getName(),
                     "space" => config('yalnt.nova.namespace', 'App\\Nova'),
-                    "fields" => $fields = array_unique($fields),
+                    "fields" => array_unique($fields),
                     "attributes" => $properties,
                     "relations" => $relations
                 );
