@@ -88,7 +88,8 @@ class EloquentModelParser
                     return NovaFieldEnum::$CURRENCY;
                 }
                 return NovaFieldEnum::$NUMBER;
-
+            
+            case 'boolean':
             case 'bool':
                 return NovaFieldEnum::$BOOLEAN;
 
