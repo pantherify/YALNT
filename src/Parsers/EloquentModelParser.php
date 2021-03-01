@@ -48,7 +48,7 @@ class EloquentModelParser
             }
 
             if (config('yalnt.generation.skipTimeStamps') &&
-            (Str::contains($name, 'updated_at') || Str::contains($name, 'created_at'))) {
+            (Str::contains($name, 'updated_at') || Str::contains($name, 'created_at') || Str::contains($name, 'deleted_at'))) {
                 continue;
             }
             

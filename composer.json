@@ -1,11 +1,13 @@
 {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "name": "pantherify/yalnt",
     "description": "Yeat Another Laravel Nova Tools, productivity tools",
-    "authors": [{
-        "name": "David Fernandes",
-        "email": "davidsf@pantherify.com"
-    }],
+    "authors": [
+        {
+            "name": "David Fernandes",
+            "email": "davidsf@pantherify.com"
+        }
+    ],
     "license": "GPL-3.0-or-later",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -26,10 +28,12 @@
             ]
         }
     },
-    "repositories": [{
-        "type": "composer",
-        "url": "https://nova.laravel.com"
-    }],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.18"
     }
