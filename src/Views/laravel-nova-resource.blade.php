@@ -21,7 +21,11 @@ class {{ $model["name"] }} extends Resource
      *
      * @var string
      */
+    @if ($model["label"])
+    public static $title = '{{$model['label']}}';
+    @else
     public static $title = 'id';
+    @endif
 
     /**
      * The columns that should be searched.

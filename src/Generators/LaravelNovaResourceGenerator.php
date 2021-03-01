@@ -52,6 +52,10 @@ class LaravelNovaResourceGenerator
                     continue;
                 }
 
+                $label = 'id';
+                if ($model->label) {
+                    $label = $model->label;
+                }
 
                 $fields = array_map(function ($prop) {
                     return $prop["type"];
@@ -68,7 +72,8 @@ class LaravelNovaResourceGenerator
                     "space" => config('yalnt.nova.namespace', 'App\\Nova'),
                     "fields" => array_unique($fields),
                     "attributes" => $properties,
-                    "relations" => $relations
+                    "relations" => $relations,
+                    "label" => $label
                 );
             } catch (\Exception $e) {
                 throw GeneratorException::FlowError($e);
