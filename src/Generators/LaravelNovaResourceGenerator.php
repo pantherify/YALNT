@@ -32,7 +32,7 @@ class LaravelNovaResourceGenerator
             try {
                 $reflection_class = new \ReflectionClass($class);
 
-                if (config('yalnt.generation.skipUser') && Str::contains($reflection_class->getShortName(), 'User')) {
+                if (config('yalnt.generation.skipUser') && $reflection_class->getShortName() === 'User') {
                     continue;
                 }
 
