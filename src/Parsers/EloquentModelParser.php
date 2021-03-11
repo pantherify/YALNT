@@ -115,6 +115,7 @@ class EloquentModelParser
                 }
                 return NovaFieldEnum::$TEXTAREA;
 
+            case 'json':
             case 'jsonb':
                 return NovaFieldEnum::$KEYVALUE;
 
